@@ -1,9 +1,9 @@
 const http = require('http');
-const hostname = '127.0.0.1';
-const port = 3000;
 const axios = require('axios');
 const { Telegraf } = require('telegraf');
 
+const hostname = '0.0.0.0';
+const PORT = process.env.PORT || 3000;
 const bot = new Telegraf('1226295178:AAHYjBb6I-AMpfSw3CG3GtHeDOEV6l7w3Zk')
 let language
 
@@ -47,7 +47,7 @@ const server = http.createServer((req, res) => {
   res.end('Hola Mundo');
 });
 
-server.listen(process.env.PORT || port, hostname, () => {
+server.listen(PORT, hostname, () => {
   bot.launch()
-  console.log(`El servidor se está ejecutando en http://${hostname}:${port}/`);
+  console.log(`El servidor se está ejecutando en http://${hostname}:${PORT}/`);
 });
