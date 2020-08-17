@@ -1,0 +1,15 @@
+{
+  "name": "english-bot",
+  "version": "1.0.0",
+  "description": "Bot for me",
+  "main": "bot.js",
+  "scripts": {
+    "start": "node bot.js"
+  },
+  "author": "Junior Perdomo",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.19.2",
+    "telegraf": "^3.38.0"
+  }
+}
