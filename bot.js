@@ -1,6 +1,9 @@
-/* eslint-disable @typescript-eslint/no-var-requires */
+const http = require('http');
+const hostname = '127.0.0.1';
+const port = 3000;
 const axios = require('axios');
 const { Telegraf } = require('telegraf');
+
 const bot = new Telegraf('1226295178:AAHYjBb6I-AMpfSw3CG3GtHeDOEV6l7w3Zk')
 let language
 
@@ -37,4 +40,14 @@ bot.use(async (ctx) => {
         ctx.reply(`${data} 👎`)
     }
 })
-bot.launch()
+
+const server = http.createServer((req, res) => {
+  res.statusCode = 200;
+  res.setHeader('Content-Type', 'text/plain');
+  res.end('Hola Mundo');
+});
+
+server.listen(process.env.PORT || port, hostname, () => {
+  bot.launch()
+  console.log(`El servidor se está ejecutando en http://${hostname}:${port}/`);
+});

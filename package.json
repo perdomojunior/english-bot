@@ -11,5 +11,8 @@
   "dependencies": {
     "axios": "^0.19.2",
     "telegraf": "^3.38.0"
+  },
+  "engines": {
+    "node": "12.18.3"
   }
 }
