@@ -1,15 +1,49 @@
 const http = require('http');
 const axios = require('axios');
 const { Telegraf } = require('telegraf');
+const Extra = require('telegraf/extra')
+const Markup = require('telegraf/markup')
+const words = require('./3000_words')
 
 const hostname = '0.0.0.0';
 const PORT = process.env.PORT || 3000;
-const bot = new Telegraf('1226295178:AAHYjBb6I-AMpfSw3CG3GtHeDOEV6l7w3Zk')
+const bot = new Telegraf('1336845635:AAHlYm8EWFWxW6cWJisq4oD1dHOLaL_m3R4')
 let language
 
-bot.start((ctx) => ctx.reply('Welcome'))
+bot.help((ctx) => ctx.reply('Hi I am YourVocabularyBot my purpose is help you to study vocabulary with the 3000 most common words in English according to the oxford dictionary. Press /start  Take care @chunioor 😜'))
 
-bot.help((ctx) => ctx.reply('Send me a sticker'))
+bot.start(({ reply }) => {
+    return reply("Welcome to Improve your vocabulary. Press button [🔍 Random word']", Markup
+      .keyboard([
+        ['🔍 Random word']
+      ])
+      .oneTime()
+      .resize()
+      .extra()
+    )
+  })
+
+bot.hears('🔍 Random word', async (ctx) => {
+    let data = {}
+    const word = words[Math.floor(Math.random() * 3001)];
+    await axios.get(`https://manager-english-bot.herokuapp.com/word/${word}`)
+        .then(res => {
+            data = res.data
+        })
+        .catch(err => {
+            console.log(err)
+        });
+    if (data.pronunciations) {
+        ctx.replyWithAudio({
+            url: data.pronunciations
+        }, {
+            title: word.toUpperCase(),
+            caption: data.definitions
+        })
+    } else {
+        ctx.reply(`${word} word not found 👎`)
+    }
+})
 
 bot.command('lang', (ctx) => {
     const lang = ctx.message.text.split(" ")
@@ -33,11 +67,11 @@ bot.use(async (ctx) => {
         ctx.replyWithAudio({
             url: data.pronunciations
         }, {
-            title: ctx.message.text,
+            title: ctx.message.text.toUpperCase(),
             caption: data.definitions
         })
     } else {
-        ctx.reply(`${data} 👎`)
+        ctx.reply(`${ctx.message.text} word not found 👎`)
     }
 })
 
