@@ -68,7 +68,7 @@ bot.use(async (ctx) => {
             url: data.pronunciations
         }, {
             title: ctx.message.text.toUpperCase(),
-            caption: data.definitions
+            caption: `✅ Definition: ${data.definitions} ❗️Example ${data.examples}`
         })
     } else {
         ctx.reply(`${ctx.message.text} word not found 👎`)
