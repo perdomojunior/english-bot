@@ -78,10 +78,10 @@ bot.use(async (ctx) => {
 const server = http.createServer((req, res) => {
   res.statusCode = 200;
   res.setHeader('Content-Type', 'text/plain');
-  bot.launch()
   res.end('Hola Mundo');
 });
 
 server.listen(PORT, hostname, () => {
+  bot.launch()
   console.log(`El servidor se está ejecutando en http://${hostname}:${PORT}/`);
 });
