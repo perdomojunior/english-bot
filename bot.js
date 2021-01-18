@@ -38,7 +38,7 @@ bot.hears('🔍 Random word', async (ctx) => {
             url: data.pronunciations
         }, {
             title: word.toUpperCase(),
-            caption: `✅ Definition: ${data.definitions} ❗️Example ${data.examples}`
+            caption: `✅ Definition: ${data.definitions} ❗️Example: ${data.examples}`
         })
     } else {
         ctx.reply(`${word} word not found 👎`)
