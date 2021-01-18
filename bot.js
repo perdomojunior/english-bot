@@ -68,7 +68,7 @@ bot.use(async (ctx) => {
             url: data.pronunciations
         }, {
             title: ctx.message.text.toUpperCase(),
-            caption: `✅ Definition: ${data.definitions} ❗️Example ${data.examples}`
+            caption: `✅ Definition: ${data.definitions} ❗️Example: ${data.examples}`
         })
     } else {
         ctx.reply(`${ctx.message.text} word not found 👎`)
@@ -78,6 +78,7 @@ bot.use(async (ctx) => {
 const server = http.createServer((req, res) => {
   res.statusCode = 200;
   res.setHeader('Content-Type', 'text/plain');
+  bot.launch()
   res.end('Hola Mundo');
 });
 
