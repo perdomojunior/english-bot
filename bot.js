@@ -7,7 +7,7 @@ const words = require('./3000_words')
 
 const hostname = '0.0.0.0';
 const PORT = process.env.PORT || 3000;
-const bot = new Telegraf('1336845635:AAHlYm8EWFWxW6cWJisq4oD1dHOLaL_m3R4')
+const bot = new Telegraf('1583531255:AAFYQZmvjKjjKPckZ0DZWMhJdvvHq7QbxTU')
 let language
 
 bot.help((ctx) => ctx.reply('Hi I am YourVocabularyBot my purpose is help you to study vocabulary with the 3000 most common words in English according to the oxford dictionary. Press /start  Take care @chunioor 😜'))
