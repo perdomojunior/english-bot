@@ -83,6 +83,5 @@ const server = http.createServer((req, res) => {
 });
 
 server.listen(PORT, hostname, () => {
-  bot.launch()
   console.log(`El servidor se está ejecutando en http://${hostname}:${PORT}/`);
 });
